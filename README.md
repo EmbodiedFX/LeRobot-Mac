@@ -11,7 +11,9 @@ Once finished, you should get three kinds of outputs:
 
 * **Single-step inference result**: `pred_action` printed in the console
 * **Evaluation results**: success-rate statistics for test suites such as `libero_object` and `libero_spatial`
-* **Simulation artifacts**: logs, configs, and generated simulation videos or image sequences in the evaluation output directory
+* **Simulation artifacts**: logs, configs, and generated simulation videos or image sequences in the evaluation output directory, for example:
+
+https://github.com/user-attachments/assets/c750d724-570b-455f-a86f-a2c561a45fe5
 
 Reference for this document:
 - [LeRobot installation](https://huggingface.co/docs/lerobot/en/installation)

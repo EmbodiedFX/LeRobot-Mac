@@ -11,7 +11,9 @@
 
 * **单步推理结果**：控制台打印 `pred_action`
 * **评测结果**：`libero_object`、`libero_spatial` 等测试套件的成功率统计
-* **仿真产物**：评测输出目录中的日志、配置，以及生成的仿真视频或图像序列
+* **仿真产物**：评测输出目录中的日志、配置，以及生成的仿真视频或图像序列，如
+
+https://github.com/user-attachments/assets/c750d724-570b-455f-a86f-a2c561a45fe5
 
 **本文档参考：**
 

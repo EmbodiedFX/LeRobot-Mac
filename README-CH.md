@@ -1,6 +1,6 @@
 # 在 macOS 上复现 π₀.₅ + LeRobot + LIBERO + MuJoCo
 
-> 本文位于 https://github.com/EmbodiedFX/LeRobot-Mac。English version: [README.md](./README.md)
+> 本文位于 https://github.com/EmbodiedFX/LeRobot-Mac 。English version: [README.md](./README.md)
 
 这篇笔记记录的是：在一台**干净的 macOS Apple Silicon 机器**上，如何从零开始跑通下面两件事：
 

@@ -1,17 +1,26 @@
-# 在 macOS 上复现 π0.5 + LeRobot + LIBERO + MuJoCo
+# 在 macOS 上复现 π₀.₅ + LeRobot + LIBERO + MuJoCo
 
 > 本文位于 https://github.com/EmbodiedFX/LeRobot-Mac。English version: [README.md](./README.md)
 
 这篇笔记记录的是：在一台**干净的 macOS Apple Silicon 机器**上，如何从零开始跑通下面两件事：
 
-1. **单步推理**：让 π0.5 读取一条 LIBERO 数据样本，输出一个动作预测
-2. **闭环评测**：让 π0.5 作为策略，真正进入 LIBERO 环境，在 MuJoCo 上完成任务，并产出评测结果
+1. **单步推理**：让 π₀.₅ 读取一条 LIBERO 数据样本，输出一个动作预测
+2. **闭环评测**：让 π₀.₅ 作为策略，真正进入 LIBERO 环境，在 MuJoCo 上完成任务，并产出评测结果
 
 完成后，你可以得到三类结果：
 
 * **单步推理结果**：控制台打印 `pred_action`
 * **评测结果**：`libero_object`、`libero_spatial` 等测试套件的成功率统计
 * **仿真产物**：评测输出目录中的日志、配置，以及生成的仿真视频或图像序列
+
+可以翻译为：
+
+**本文档参考：**
+
+* [LeRobot 安装](https://huggingface.co/docs/lerobot/en/installation)
+* [使用 Libero](https://huggingface.co/docs/lerobot/en/libero)
+* [π₀.₅ Policy](https://huggingface.co/docs/lerobot/en/pi05)
+* [环境处理器](https://huggingface.co/docs/lerobot/en/env_processor)
 
 ## 一、背景
 
@@ -20,9 +29,9 @@
 - **MuJoCo** 是底层物理引擎，负责仿真。
 - **LIBERO** 是机器人操作任务基准，可以理解为一组标准任务集合。
 - **LeRobot** 是把模型、数据集、评测入口统一起来的工具链。
-- **π0.5** 是本次使用的 VLA policy。
+- **π₀.₅** 是本次使用的 VLA policy。
 
-因此，这套流程是在做这么一件事：用 LeRobot 加载 π0.5，把它放进 LIBERO 环境里，在 MuJoCo 上完成一次真实的闭环评测。
+因此，这套流程是在做这么一件事：用 LeRobot 加载 π₀.₅，把它放进 LIBERO 环境里，在 MuJoCo 上完成一次真实的闭环评测。
 
 ## 二、适用环境
 
@@ -63,7 +72,7 @@ cd lerobot
 pip install -e .
 ```
 
-## 五、安装 π0.5 依赖
+## 五、安装 π₀.₅ 依赖
 
 ```bash
 pip install -e ".[pi]"
@@ -77,7 +86,7 @@ pip install -e ".[pi]"
 pip install "hf-libero>=0.1.3,<0.2.0"
 ```
 
-> 不要跑`pip install -e ".[libero]"`，它引入标准版 `transformers>=4.57.1`，会与 π0.5 的依赖（一个 transformers 的修复分支`fix/lerobot_openpi`）冲突。
+> 不要跑`pip install -e ".[libero]"`，它引入标准版 `transformers>=4.57.1`，会与 π₀.₅ 的依赖（一个 transformers 的修复分支`fix/lerobot_openpi`）冲突。
 
 ### Troubleshooting
 
@@ -118,7 +127,7 @@ PY
 
 ## 八、单步推理
 
-这一步是在验证 **π0.5 能不能在当前环境里顺利完成一次前向推理。**
+这一步是在验证 **π₀.₅ 能不能在当前环境里顺利完成一次前向推理。**
 
 在 `lerobot/` 根目录新建文件 `quick_infer_mac.py`，内容如下：
 
@@ -166,14 +175,14 @@ print("pred_action:", pred_action)
 
 这段代码做了 6 件事：
 
-1. 加载 π0.5 模型 `lerobot/pi05_libero_finetuned`
+1. 加载 π₀.₅ 模型 `lerobot/pi05_libero_finetuned`
 2. 根据设备情况，把模型放到 `mps` 或 `cpu`
 3. 从 `lerobot/libero` 数据集中取一条样本
 4. 通过 preprocess 把样本整理成模型接受的输入
 5. 调用 `policy.select_action(...)`预测下一步动作
 6. 打印模型预测出的动作
 
-> 这和 π0.5 模型卡里的 quick start 逻辑是一致的。
+> 这和 π₀.₅ 模型卡里的 quick start 逻辑是一致的。
 
 执行：
 
@@ -199,7 +208,7 @@ pred_action: ...
 
 ## 九、最小闭环评测
 
-接下来进入系统级验证，把 π0.5 放进 LIBERO / MuJoCo 环境里做 rollout。
+接下来进入系统级验证，把 π₀.₅ 放进 LIBERO / MuJoCo 环境里做 rollout。
 
 先跑最小版本：
 
@@ -218,7 +227,7 @@ lerobot-eval \
 这里每个参数的作用如下：
 
 * `--policy.path=lerobot/pi05_libero_finetuned`
-  指定使用的 π0.5 checkpoint
+  指定使用的 π₀.₅ checkpoint
 
 * `--policy.device=mps`
   明确告诉 LeRobot 在 Apple Silicon 上使用 MPS

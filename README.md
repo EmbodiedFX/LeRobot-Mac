@@ -41,7 +41,7 @@ This article assumes the following environment:
 * **conda / miniforge**
 * Running locally, without relying on a remote Linux machine
 
-## 3. Create a Python 3.10 Environment
+## 3. Create a Python 3.12 Environment
 
 If conda is not installed yet, you can install Miniforge first:
 
@@ -53,7 +53,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 After installation, reopen the terminal and create the environment:
 
 ```bash
-conda create -y -n lerobot python=3.10
+conda create -y -n lerobot python=3.12
 conda activate lerobot
 conda install -y -c conda-forge ffmpeg
 python -m pip install -U pip

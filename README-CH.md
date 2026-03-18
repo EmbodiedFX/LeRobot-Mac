@@ -42,7 +42,7 @@ https://github.com/user-attachments/assets/c750d724-570b-455f-a86f-a2c561a45fe5
 * **conda / miniforge**
 * 本地直接运行，不依赖远程 Linux 机器
 
-## 三、创建 Python 3.10 环境
+## 三、创建 Python 3.12 环境
 
 如果本机还没有 conda，可以先安装 Miniforge：
 
@@ -54,7 +54,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 安装完成后，重新打开终端，创建环境：
 
 ```bash
-conda create -y -n lerobot python=3.10
+conda create -y -n lerobot python=3.12
 conda activate lerobot
 conda install -y -c conda-forge ffmpeg
 python -m pip install -U pip
